@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="~/Styles/Style.css" rel="stylesheet"/>
+</head>
+<body>
+    <div>
+        <header>
+            @RenderSection("Header")
+            <a href="~/Pages/Games.cshtml" class="menu-element">Games</a>
+            <a href="~/Pages/GameRoulette.cshtml" class="menu-element">Game Roulette</a>
+            <a href="~/Pages/About.cshtml" class="menu-element">About us</a>
+            <a href="~/Pages/Login.cshtml" class="menu-element">Login</a>
+        </header>
+    </div>
+    <div class="content">
+        @RenderBody()
+        
+    </div>
+</body>
+</html>

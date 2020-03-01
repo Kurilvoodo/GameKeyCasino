@@ -1,0 +1,52 @@
+﻿body {
+    background: rgb(223,206,2);
+    background: linear-gradient(90deg, rgba(223,206,2,1) 26%, rgba(80,215,228,0.9836135137648809) 47%, rgba(120,15,195,1) 94%);
+}
+header {
+    height: 50px;
+    width: 80%;
+    background: rgb(223, 236, 4);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-radius: 15px 100px 15px 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.menu-element {
+    position: relative;
+    display: inline-block;
+    margin-top: 2.5px;
+    margin-left: 12%;
+    margin-right: auto;
+    padding: 6px;
+    text-decoration: none;
+    color: aliceblue;
+    float: left;
+    border-left: 3px solid #F2FADA; /* Параметры линии */
+    border-right: 3px solid #F2FADA; /* Параметры линии */
+    font: normal small-caps 26px/28px fantasy;
+    text-shadow: black 0 0 2px;
+}
+.menu-element-profile{
+
+}
+    .menu-element:hover {
+        text-decoration: underline;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        border-left: 3px solid #060901; /* Параметры линии */
+        border-right: 3px solid #060901; /* Параметры линии */
+        border-top: 3px solid #060901; /* Параметры линии */
+        border-bottom: 3px solid #060901; /* Параметры линии */
+    }
+.content {
+    position:relative;
+
+    width: 80%;
+    height: 60%;
+    margin: auto;
+    background: white;
+}
+.content-conteiner{
+    position:relative;
+}
