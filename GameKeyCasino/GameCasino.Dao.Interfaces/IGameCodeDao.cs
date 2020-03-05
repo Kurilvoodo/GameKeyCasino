@@ -4,8 +4,9 @@ using System.Text;
 using GameCasino.Entities;
 namespace GameCasino.Dao.Interfaces
 {
-    public interface IGameCode
+    public interface IGameCodeDao
     {
         GameCode GetGameCodeByIdGame(int idGame);
+        void unable();
     }
 }

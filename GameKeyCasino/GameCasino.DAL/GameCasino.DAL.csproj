@@ -4,8 +4,4 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\GameCasino.Entities\GameCasino.Entities.csproj" />
-  </ItemGroup>
-
 </Project>

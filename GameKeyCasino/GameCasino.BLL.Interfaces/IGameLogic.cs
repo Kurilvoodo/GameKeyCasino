@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using GameCasino.Entities;
-namespace GameCasino.Dao.Interfaces
+namespace GameCasino.BLL.Interfaces
 {
-    public interface IGameDao
+    public interface IGameLogic
     {
         IEnumerable<Game> GetAllGames();
         IEnumerable<Game> GetGameById(int idGame);

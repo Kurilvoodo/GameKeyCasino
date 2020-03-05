@@ -1,12 +1,11 @@
 ﻿using System;
 using GameCasino.Entities;
-namespace GameCasino.Dao.Interfaces
+namespace GameCasino.BLL.Interfaces
 {
-    public interface IUserDao
+    public interface IUserLogic
     {
         void Add(User user);
         void AddMoney(float money);
         void RemoveMoney(float money);
-
     }
 }
