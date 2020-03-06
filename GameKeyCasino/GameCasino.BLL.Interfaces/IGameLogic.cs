@@ -7,7 +7,7 @@ namespace GameCasino.BLL.Interfaces
     public interface IGameLogic
     {
         IEnumerable<Game> GetAllGames();
-        IEnumerable<Game> GetGameById(int idGame);
+        Game GetGameById(int idGame);
         GameCode BuyGameById(Game game, int idUser);
         IEnumerable<Game> GetGameByType(string type);
     }

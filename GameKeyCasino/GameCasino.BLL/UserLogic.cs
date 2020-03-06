@@ -16,12 +16,12 @@ namespace GameCasino.BLL
             _userDao.Add(user);
         }
 
-        public void AddMoney(int idUser,float money)
+        public void AddMoney(int idUser,decimal money)
         {
             _userDao.AddMoney(idUser,money);
         }
 
-        public void RemoveMoney(int idUser,float money)
+        public void RemoveMoney(int idUser,decimal money)
         {
             _userDao.RemoveMoney(idUser,money);
         }

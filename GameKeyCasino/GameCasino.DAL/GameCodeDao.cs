@@ -12,6 +12,7 @@ namespace GameCasino.DAL
         private string _connectionString = @"Data Source=DESKTOP-QALPV5U\SQLEXPRESS;Initial Catalog=GameCasino;Integrated Security=True";
         public GameCode GetGameCodeByIdGame(int idGame)
         {
+            #region GetGameCodeByIdGame(int idGame)
             GameCode gameCode = null;
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -54,6 +55,7 @@ namespace GameCasino.DAL
                 command.ExecuteNonQuery();
             }
                 return gameCode;
+            #endregion
         }
 
         public void unable()

@@ -24,14 +24,14 @@ namespace GameCasino.BLL
             return _gameDao.GetAllGames();
         }
 
-        public IEnumerable<Game> GetGameById(int idGame)
+        public Game GetGameById(int idGame)
         {
             return _gameDao.GetGameById(idGame);
         }
 
-        IEnumerable<Game> IGameLogic.GetGameByType(string type)
+        public IEnumerable<Game> GetGameByType(string type)
         {
-            throw new NotImplementedException();
+            return _gameDao.GetGameByType(type);
         }
     }
 }

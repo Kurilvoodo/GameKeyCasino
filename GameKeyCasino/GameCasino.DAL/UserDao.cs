@@ -40,7 +40,7 @@ namespace GameCasino.DAL
 
                 var billParameter = new SqlParameter()
                 {
-                    DbType = DbType.String,  //ПЕРЕПРАВИТЬ ТИПЫ DbType ВЕЗДЕ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    DbType = DbType.Decimal,  //ПЕРЕПРАВИТЬ ТИПЫ DbType ВЕЗДЕ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     ParameterName = "@Bill",
                     Value = user._bill,
                     Direction = ParameterDirection.Input
@@ -53,7 +53,7 @@ namespace GameCasino.DAL
             #endregion
         }
 
-        public void AddMoney(int idUser,float money)
+        public void AddMoney(int idUser,decimal money)
         {
             #region AddMoney(int idUser,float money)
             using (var connection = new SqlConnection(_connectionString))
@@ -64,7 +64,7 @@ namespace GameCasino.DAL
 
                 var idParameter = new SqlParameter()
                 {
-                    DbType = DbType.String,
+                    DbType = DbType.Int32,
                     ParameterName = "@Id",
                     Value = idUser,
                     Direction = ParameterDirection.Input
@@ -73,7 +73,7 @@ namespace GameCasino.DAL
 
                 var moneyParameter = new SqlParameter()
                 {
-                    DbType = DbType.String,
+                    DbType = DbType.Decimal,
                     ParameterName = "@Money",
                     Value = money,
                     Direction = ParameterDirection.Input
@@ -87,7 +87,7 @@ namespace GameCasino.DAL
                 #endregion
         }
 
-        public void RemoveMoney(int idUser,float money)
+        public void RemoveMoney(int idUser,decimal money)
         {
             #region RemoveMoney(int idUser, float money)
             using (var connection = new SqlConnection(_connectionString))
@@ -98,7 +98,7 @@ namespace GameCasino.DAL
 
                 var idParameter = new SqlParameter()
                 {
-                    DbType = DbType.String,
+                    DbType = DbType.Int32,
                     ParameterName = "@Id",
                     Value = idUser,
                     Direction = ParameterDirection.Input
@@ -107,7 +107,7 @@ namespace GameCasino.DAL
 
                 var moneyParameter = new SqlParameter()
                 {
-                    DbType = DbType.String,
+                    DbType = DbType.Decimal,
                     ParameterName = "@Money",
                     Value = idUser,
                     Direction = ParameterDirection.Input

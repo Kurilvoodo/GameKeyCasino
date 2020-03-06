@@ -7,7 +7,7 @@ namespace GameCasino.Dao.Interfaces
     public interface IGameDao
     {
         IEnumerable<Game> GetAllGames();
-        IEnumerable<Game> GetGameById(int idGame);
+        Game GetGameById(int idGame);
         GameCode BuyGameById(Game game, int idUser);
         IEnumerable<Game> GetGameByType(string type);
     }
