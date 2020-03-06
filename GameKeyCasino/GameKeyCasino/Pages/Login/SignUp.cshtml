@@ -57,7 +57,7 @@
                 }
                 catch (System.Data.SqlClient.SqlException)
                 {
-
+                    Response.Redirect("~/Pages/Login/RegistrationFailed.cshtml");
                 }
             }
         }
