@@ -1,0 +1,29 @@
+﻿@using GameCasino.Ioc
+@using GameCasino.Entities
+@{
+    Layout = "~/Layouts/GeneralLayout.cshtml";
+
+}
+
+@section Header{}
+    @if (IsPost)
+    {
+        if (Request["Action"] != null &&
+           Request["Action"] == "ShowGame")
+        {
+            int idGame;
+            if (Request["Id"] != null &&
+                Request["Id"] != "" &&
+                int.TryParse(Request["Id"],out idGame))
+            {
+                var gamelogic = DependencyResolver.GameLogic;
+
+                Game game = gamelogic.GetGameById(idGame);
+            }
+        }
+    }
+    <div>
+        
+    </div>
+
+

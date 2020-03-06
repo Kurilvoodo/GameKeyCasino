@@ -34,8 +34,8 @@ namespace GameCasino.DAL
                 {
                     games.Add(new Game(reader["GameName"] as string,
                         (int)reader["typeOfGame"],
-                        (decimal)reader["BasePrice"],
-                        (decimal)reader["OurPrice"])
+                        (decimal)reader["OurPrice"], 
+                        (decimal)reader["BasePrice"])
                     { 
                         _id=(int)reader["Id"]
                     }
@@ -72,8 +72,8 @@ namespace GameCasino.DAL
                 {
                     game= new Game(reader["GameName"] as string,
                         (int)reader["typeOfGame"],
-                        (decimal)reader["BasePrice"],
-                        (decimal)reader["OurPrice"])
+                        (decimal)reader["OurPrice"],
+                        (decimal)reader["BasePrice"])
                     {
                         _id = (int)reader["Id"]
                     };
@@ -108,8 +108,8 @@ namespace GameCasino.DAL
                 {
                     games.Add(new Game(reader["GameName"] as string,
                         (int)reader["typeOfGame"],
-                        (decimal)reader["BasePrice"],
-                        (decimal)reader["OurPrice"])
+                        (decimal)reader["OurPrice"],
+                        (decimal)reader["BasePrice"])
                     {
                         _id = (int)reader["Id"]
                     });

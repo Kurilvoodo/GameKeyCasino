@@ -115,6 +115,7 @@
     <Content Include="Pages\Login\SignInError.cshtml" />
     <Content Include="Pages\Login\RegistrationSucces.cshtml" />
     <Content Include="Pages\Login\RegistrationFailed.cshtml" />
+    <Content Include="Pages\GameShow.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -18,7 +18,7 @@ namespace GameCasino.Entities
             _name = name;
             _type = type;
             _price = price;
-            _ourPrice = price;
+            _ourPrice = ourPrice;
         }
     }
 }
