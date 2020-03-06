@@ -112,6 +112,9 @@
     <Content Include="Pages\SpinTypeS.cshtml" />
     <Content Include="Pages\Login\SignIn.cshtml" />
     <Content Include="Pages\Login\SignUp.cshtml" />
+    <Content Include="Pages\Login\SignInError.cshtml" />
+    <Content Include="Pages\Login\RegistrationSucces.cshtml" />
+    <Content Include="Pages\Login\RegistrationFailed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -144,6 +147,9 @@
       <Project>{3313f13b-400a-46dd-95e8-f67c164747e9}</Project>
       <Name>GameCasino.Ioc</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="img\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

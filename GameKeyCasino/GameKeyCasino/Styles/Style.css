@@ -41,12 +41,41 @@ header {
     }
 .content {
     position:relative;
-
+    display:block;
     width: 80%;
     height: 60%;
     margin: auto;
     background: white;
+    padding:25px
 }
-.content-conteiner{
-    position:relative;
+.content-conteiner {
+    position: relative;
+    display: block;
+}
+.container-for-games {
+    background: rgb(223,206,2);
+    background: linear-gradient(90deg, rgba(223,206,2,1) 26%, rgba(80,215,228,0.9836135137648809) 47%, rgba(120,15,195,1) 94%);
+    padding: 10px;
+    display: inline-block;
+    width: 340px;
+    height: 240px;
+    left: 25px;
+    right: 25px;
+    border-radius: 25px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.76);
+}
+
+.h1-game {
+    text-align: center;
+    padding: 5px 0 5px 0;
+    color: aliceblue;
+    font: normal small-caps 22px/24px fantasy;
+    text-shadow: black 0 0 2px;
+}
+.img{
+    
+    margin-left:25px;
+    margin-bottom:15px;
+    height:160px;
+    width:280px;
 }

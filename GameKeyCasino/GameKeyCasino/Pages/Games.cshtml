@@ -1,17 +1,25 @@
-﻿@{
+﻿@using GameCasino.Ioc
+@using GameCasino.Entities
+@{
     Layout = "~/Layouts/GeneralLayout.cshtml";
+    var gamelogic = DependencyResolver.GameLogic;
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Games</title>
-</head>
-<body>
-    <div>
     
-    </div>
+@section Header{}
+    
+<body>
+    
+        
+            @foreach (Game game in gamelogic.GetAllGames())
+            {
+                <div class="container-for-games">
+                    <h1 class="h1-game">@game._name</h1>
+                    @{string a = game._name+".jpg";}
+                    <img class="img" src="~/img/@a" >
+                </div>
+            }
+        
+
+    
 </body>
-</html>
+
