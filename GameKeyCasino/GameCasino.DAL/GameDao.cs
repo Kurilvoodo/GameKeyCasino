@@ -3,27 +3,32 @@ using System.Collections.Generic;
 using System.Text;
 using GameCasino.Entities;
 using GameCasino.Dao.Interfaces;
-//using System.Data.SqlClient; 
+using System.Data;
+using System.Data.SqlClient; 
 namespace GameCasino.DAL
 {
     public class GameDao : IGameDao
     {
-        void IGameDao.BuyGameById(int idGame)
+        private string _connectionString = @"Data Source=DESKTOP-QALPV5U\SQLEXPRESS;Initial Catalog=GameCasino;Integrated Security=True";
+        public GameCode BuyGameById(Game game, int idUser)
+        {
+            UserDao userDao = new UserDao();
+            userDao.RemoveMoney(idUser,game._ourPrice); //снимаем деньги со счета покупателя.
+            GameCodeDao gameCodeDao = new GameCodeDao();
+            return gameCodeDao.GetGameCodeByIdGame(game._id);
+        }
+
+        public IEnumerable<Game> GetAllGames()
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<Game> IGameDao.GetAllGames()
+        public IEnumerable<Game> GetGameById(int idGame)
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<Game> IGameDao.GetGameById(int idGame)
-        {
-            throw new NotImplementedException();
-        }
-
-        IEnumerable<Game> IGameDao.GetGameByType(string type)
+        public IEnumerable<Game> GetGameByType(string type)
         {
             throw new NotImplementedException();
         }

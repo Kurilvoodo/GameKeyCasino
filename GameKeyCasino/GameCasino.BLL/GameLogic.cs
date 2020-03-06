@@ -14,9 +14,9 @@ namespace GameCasino.BLL
         {
             _gameDao = gameDao;
         }
-        public void BuyGameById(int idGame)
+        public GameCode BuyGameById(Game game, int idUser)
         {
-            _gameDao.BuyGameById(idGame);
+            return _gameDao.BuyGameById(game, idUser);
         }
 
         public IEnumerable<Game> GetAllGames()

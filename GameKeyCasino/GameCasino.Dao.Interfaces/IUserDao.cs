@@ -5,8 +5,8 @@ namespace GameCasino.Dao.Interfaces
     public interface IUserDao
     {
         void Add(User user);
-        void AddMoney(float money);
-        void RemoveMoney(float money);
+        void AddMoney(int idUser,float money);
+        void RemoveMoney(int idUser,float money);
 
     }
 }

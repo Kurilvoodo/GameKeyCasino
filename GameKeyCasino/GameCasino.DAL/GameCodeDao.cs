@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using GameCasino.Entities;
 using GameCasino.Dao.Interfaces;
-//using System.Data.SqlClient; 
+using System.Data;
+using System.Data.SqlClient; 
 namespace GameCasino.DAL
 {
     public class GameCodeDao : IGameCodeDao
@@ -11,7 +12,31 @@ namespace GameCasino.DAL
         private string _connectionString = @"Data Source=DESKTOP-QALPV5U\SQLEXPRESS;Initial Catalog=GameCasino;Integrated Security=True";
         public GameCode GetGameCodeByIdGame(int idGame)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.GetGameCodeByIdGame";
+
+                var idParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@Id",
+                    Value = idGame,
+                    Direction = ParameterDirection.Input
+                };
+                command.Parameters.Add(idParameter);
+                connection.Open();
+                GameCode gameCode = null;
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    gameCode = new GameCode(
+                        reader["GameCode"] as string,
+                        (int)reader["able"]);
+                }
+                return gameCode;
+            }
         }
 
         public void unable()

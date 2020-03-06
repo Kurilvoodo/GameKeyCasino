@@ -8,7 +8,7 @@ namespace GameCasino.BLL.Interfaces
     {
         IEnumerable<Game> GetAllGames();
         IEnumerable<Game> GetGameById(int idGame);
-        void BuyGameById(int idGame);
+        GameCode BuyGameById(Game game, int idUser);
         IEnumerable<Game> GetGameByType(string type);
     }
 }
