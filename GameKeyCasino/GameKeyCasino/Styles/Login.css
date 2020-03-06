@@ -1,0 +1,40 @@
+﻿body {
+    background: rgb(223,206,2);
+    background: linear-gradient(90deg, rgba(223,206,2,1) 26%, rgba(80,215,228,0.9836135137648809) 47%, rgba(120,15,195,1) 94%);
+}
+.h1-login {
+    text-align: center;
+    padding: 40px 0 30px 0;
+    color: aliceblue;
+    font: normal small-caps 26px/28px fantasy;
+    text-shadow: black 0 0 2px;
+}
+.content {
+    padding-top: 67px;
+    min-height: 400px;
+    height: calc(100vh - 187px);
+}
+.container-for-buttons {
+    background-color: rgb(9, 184, 219);
+    width: 500px;
+    height: 340px;
+    margin: auto;
+    border-radius: 25px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.76);
+}
+.button-sign-in, .button-sign-up {
+    display: block;
+    height: 60px;
+    width: 340px;
+    margin: auto;
+    border-radius: 50px;
+    border: none;
+    margin-bottom: 25px;
+    background-color: rgb(255, 201, 8);
+    font-size: 23px;
+    font-weight: bold;
+}
+.sigin-form-label, .signup-form-label {
+    text-align: center;
+    padding-bottom: 5px;
+}

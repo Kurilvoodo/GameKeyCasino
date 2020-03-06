@@ -1,0 +1,58 @@
+﻿@using GameCasino.Ioc;
+@using GameCasino.BLL;
+@using GameCasino.Entities;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Game Casino </title>
+    <link href="~/Styles/Login.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="content">
+        <div class="container-for-buttons">
+            <form action="~/Pages/Login/SignIn.cshtml" method="post" enctype="multipart/form-data">
+                <h1 class="h1-login">Sign In</h1>
+                <input class="hidden-input" type="text" name="Action" value="signin" />
+                <label class="sigin-form-label" for="username-signin">Username</label>
+                <input required maxlength="30" minlength="4" class="sigin-form-input" type="text" id="username-signin" name="Username" value="" placeholder="Username" />
+
+                <label class="sigin-form-label" for="password-signin">Password</label>
+                <input required maxlength="30" minlength="4" class="sigin-form-input" type="password" id="password-signin" name="Password" value="" placeholder="Password" />
+                <button class="button-sign-in">SignIn</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+@{
+    if (IsPost)
+    {
+        if (Request["Action"] != null &&
+           Request["Action"] == "signin")
+        {
+            if (Request["Username"] != null &&
+                Request["Password"] != null &&
+                Request["Username"] != "" &&
+                Request["Password"] != "")
+            {
+                var userLogic = DependencyResolver.UserLogic;
+                bool isUser = userLogic.Authentification(new User(Request["Username"], Request["Password"]));
+                if (isUser)
+                {
+                    FormsAuthentication.SetAuthCookie(Request["Username"], createPersistentCookie: true);
+                    Response.Redirect("~/index.cshtml");
+                }
+                else
+                {
+                    Response.Redirect("~/Pages/Login/SignInError.cshtml");
+                }
+            }
+        }
+    }
+}

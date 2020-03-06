@@ -9,6 +9,6 @@ namespace GameCasino.Dao.Interfaces
         IEnumerable<Game> GetAllGames();
         Game GetGameById(int idGame);
         GameCode BuyGameById(Game game, int idUser);
-        IEnumerable<Game> GetGameByType(string type);
+        IEnumerable<Game> GetGameByType(int type);
     }
 }

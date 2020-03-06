@@ -25,5 +25,9 @@ namespace GameCasino.BLL
         {
             _userDao.RemoveMoney(idUser,money);
         }
+        public bool Authentification(User user)
+        {
+            return _userDao.Authentification(user);
+        }
     }
 }

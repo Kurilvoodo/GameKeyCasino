@@ -20,17 +20,102 @@ namespace GameCasino.DAL
 
         public IEnumerable<Game> GetAllGames()
         {
-            throw new NotImplementedException();
+            #region GetAllGames()
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.GetAllGames";
+
+                connection.Open();
+                var reader = command.ExecuteReader();
+                List<Game> games = new List<Game>();
+                while (reader.Read())
+                {
+                    games.Add(new Game(reader["GameName"] as string,
+                        (int)reader["typeOfGame"],
+                        (decimal)reader["BasePrice"],
+                        (decimal)reader["OurPrice"])
+                    { 
+                        _id=(int)reader["Id"]
+                    }
+                    );
+                }
+                return games;
+            }
+            #endregion
         }
 
-        public IEnumerable<Game> GetGameById(int idGame)
+        public Game GetGameById(int idGame)
         {
-            throw new NotImplementedException();
+            #region GetGameById(int idGame)
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.GetGameById";
+
+                var idParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@Id",
+                    Value = idGame,
+                    Direction = ParameterDirection.Input
+                };
+                command.Parameters.Add(idParameter);
+
+                connection.Open();
+                Game game = null;
+                var reader = command.ExecuteReader();
+                
+                while (reader.Read())
+                {
+                    game= new Game(reader["GameName"] as string,
+                        (int)reader["typeOfGame"],
+                        (decimal)reader["BasePrice"],
+                        (decimal)reader["OurPrice"])
+                    {
+                        _id = (int)reader["Id"]
+                    };
+                }
+                return game;
+            }
+            #endregion
         }
 
-        public IEnumerable<Game> GetGameByType(string type)
+        public IEnumerable<Game> GetGameByType(int type)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.GetGameById";
+
+                var typeParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@typeOfGame",
+                    Value = type,
+                    Direction = ParameterDirection.Input
+                };
+                command.Parameters.Add(typeParameter);
+
+                connection.Open();
+                List<Game> games = new List<Game>();
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    games.Add(new Game(reader["GameName"] as string,
+                        (int)reader["typeOfGame"],
+                        (decimal)reader["BasePrice"],
+                        (decimal)reader["OurPrice"])
+                    {
+                        _id = (int)reader["Id"]
+                    });
+                }
+                return games;
+            }
         }
     }
 }

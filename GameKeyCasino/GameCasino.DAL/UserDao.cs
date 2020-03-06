@@ -119,5 +119,49 @@ namespace GameCasino.DAL
             }
             #endregion
         }
+        public bool Authentification(User user) 
+        {
+            #region bool Authentification(User user)
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.Authentification";
+
+                var usernameParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@Username",
+                    Value = user._username,
+                    Direction = ParameterDirection.Input
+                };
+                command.Parameters.Add(usernameParameter);
+
+                var passwordParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@Password",
+                    Value = user._password,
+                    Direction = ParameterDirection.Input
+                };
+                command.Parameters.Add(passwordParameter);
+
+                connection.Open();
+
+                var resultCommand = command.ExecuteScalar();
+
+                if ((int)resultCommand > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+                #endregion
+                
+        }
     }
 }

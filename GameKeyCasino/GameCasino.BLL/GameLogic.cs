@@ -29,7 +29,7 @@ namespace GameCasino.BLL
             return _gameDao.GetGameById(idGame);
         }
 
-        public IEnumerable<Game> GetGameByType(string type)
+        public IEnumerable<Game> GetGameByType(int type)
         {
             return _gameDao.GetGameByType(type);
         }

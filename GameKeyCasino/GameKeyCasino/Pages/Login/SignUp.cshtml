@@ -1,0 +1,65 @@
+﻿@using GameCasino.Ioc;
+@using GameCasino.BLL;
+@using GameCasino.Entities;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link href="~/Styles/Login.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="content">
+        <div class="container-for-buttons">
+            <h1 class="h1-login">Registration</h1>
+            <form class="form-signup" action="~/Pages/Login/SignUp.cshtml" method="post" enctype="multipart/form-data">
+                <h1 class="h1-login">Sign Up</h1>
+                <input class="hidden-input" type="text" name="Action" value="signup" />
+                <label class="signup-form-label" for="username-signup">Username</label>
+                <input required maxlength="30" minlength="4" class="signup-form-input" type="text" id="username-signup" name="Username" value="" placeholder="Username" />
+                <label class="signup-form-label" for="password-signup">Password</label>
+                <input required maxlength="30" minlength="4" class="signup-form-input" type="password" id="password-signup" name="Password" value="" placeholder="Password" />
+                <label class="signup-form-label" for="repeat-password-signup">Repeat password</label>
+                <input required maxlength="30" minlength="4" class="signup-form-input" type="password" name="RepeatPassword" id="repeat-password-signup" value="" placeholder="Repeat password" />
+                <label class="add-avatar" for="avatar-input">Add avatar</label>
+                <input class="hidden-input" type="file" name="Avatar" id="avatar-input" value="" accept="image/*" />
+                <button class="button-sign-in">SignUp</button>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>
+@{ 
+    if (IsPost)
+    {
+        if (Request["Action"] != null &&
+            Request["Action"] == "signup")
+        {
+            if (Request["Username"] != null &&
+                Request["Password"] != null &&
+                Request["RepeatPassword"] != null &&
+                Request["Username"] != "" &&
+                Request["Password"] != "" &&
+                Request["RepeatPassword"] != "" &&
+                Request["Password"] == Request["RepeatPassword"])
+            {
+                var userLogic = DependencyResolver.UserLogic;
+                try
+                {
+                    userLogic.Add(new User(Request["Username"], Request["Password"]));
+                    Response.Redirect("~/Pages/Login/RegistrationSucces.cshtml");
+                }
+                catch (System.Data.SqlClient.SqlException)
+                {
+
+                }
+            }
+        }
+    }
+}

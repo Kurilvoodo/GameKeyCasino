@@ -9,11 +9,11 @@ namespace GameCasino.Entities
         public string _password { get; }
         public decimal _bill { get; set; }
 
-        public User(int id, string username, string password)
+        public User( string username, string password)
         {
-            _id = id;
             _username = username;
             _password = password;
+            _bill = 0;
         }
 
         public User(int id, string username, decimal bill)

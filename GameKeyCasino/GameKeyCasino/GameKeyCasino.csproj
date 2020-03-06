@@ -91,6 +91,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\modalWindow.js" />
+    <Content Include="Styles\Login.css" />
     <Content Include="Styles\Style.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -104,10 +106,12 @@
     <Content Include="Pages\Games.cshtml" />
     <Content Include="Pages\GameRoulette.cshtml" />
     <Content Include="Pages\About.cshtml" />
-    <Content Include="Pages\Login.cshtml" />
+    <Content Include="Pages\Login\Login.cshtml" />
     <Content Include="Pages\SpinTypeA.cshtml" />
     <Content Include="Pages\SpinTypeB.cshtml" />
     <Content Include="Pages\SpinTypeS.cshtml" />
+    <Content Include="Pages\Login\SignIn.cshtml" />
+    <Content Include="Pages\Login\SignUp.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -115,7 +119,32 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\GameCasino.BLL.Interfaces\GameCasino.BLL.Interfaces.csproj">
+      <Project>{c1c6c175-a8f0-4995-8b46-4cd963b008ef}</Project>
+      <Name>GameCasino.BLL.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameCasino.BLL\GameCasino.BLL.csproj">
+      <Project>{1928c1c6-88e0-4245-8367-8a3ae7ded8a5}</Project>
+      <Name>GameCasino.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameCasino.DAL\GameCasino.DAL.csproj">
+      <Project>{332d31e9-1748-416a-8f70-2ff9f46a5502}</Project>
+      <Name>GameCasino.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameCasino.Dao.Interfaces\GameCasino.Dao.Interfaces.csproj">
+      <Project>{a1e62e60-44a0-4d5e-90ea-18f9938ef22b}</Project>
+      <Name>GameCasino.Dao.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameCasino.Entities\GameCasino.Entities.csproj">
+      <Project>{80acf709-9c89-48c1-80da-003f9d9b7ed0}</Project>
+      <Name>GameCasino.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GameCasino.Ioc\GameCasino.Ioc.csproj">
+      <Project>{3313f13b-400a-46dd-95e8-f67c164747e9}</Project>
+      <Name>GameCasino.Ioc</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

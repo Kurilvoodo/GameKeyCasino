@@ -13,9 +13,8 @@ namespace GameCasino.Entities
         public decimal _ourPrice { get; }
         //public byte[] _image { get; }
 
-        public Game(int id,string name, int type, decimal price, decimal ourPrice)
+        public Game(string name, int type, decimal price, decimal ourPrice)
         {
-            _id = id;
             _name = name;
             _type = type;
             _price = price;

@@ -7,7 +7,7 @@ using GameCasino.Entities;
 
 namespace GameCasino.BLL
 {
-    class GameCodeLogic : IGameCodeLogic
+    public class GameCodeLogic : IGameCodeLogic
     {
         private static IGameCodeDao _gameCodeDao;
         public GameCodeLogic(IGameCodeDao gameCodeDao)
