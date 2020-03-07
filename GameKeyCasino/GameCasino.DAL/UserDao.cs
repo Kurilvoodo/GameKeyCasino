@@ -161,7 +161,32 @@ namespace GameCasino.DAL
 
             }
                 #endregion
-                
+        }
+        public int GetUserIdByUsername(string username)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.GetUserIdByUsername";
+
+                var usernameParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@Username",
+                    Value = username,
+                    Direction = ParameterDirection.Input
+                };
+                command.Parameters.Add(usernameParameter);
+                connection.Open();
+                int UserId=0;
+                var reader = command.ExecuteReader();
+                while(reader.Read())
+                {
+                    UserId = (int)reader["Id"];
+                }
+                return UserId;
+            }
         }
     }
 }

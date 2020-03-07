@@ -2,7 +2,7 @@
 @using GameCasino.Entities
 @{
     Layout = "~/Layouts/GeneralLayout.cshtml";
-
+    var userlogic = DependencyResolver.UserLogic;
 }
 
 @section Header{}
@@ -14,16 +14,26 @@
             int idGame;
             if (Request["Id"] != null &&
                 Request["Id"] != "" &&
-                int.TryParse(Request["Id"],out idGame))
+                int.TryParse(Request["Id"], out idGame))
             {
                 var gamelogic = DependencyResolver.GameLogic;
 
                 Game game = gamelogic.GetGameById(idGame);
+                string imageName = game._name + ".jpg";
+                <h1 class="h1-title">@game._name</h1>
+                <div class="container-for-games-on-show-page">
+                  <img class="img-big" src="~/img/@imageName">
+                    <form action="~/Pages/PaidKeyPage.cshtml" method="post" enctype="multipart/form-data">
+                        @{  decimal money = game._ourPrice;}
+                        <input type="hidden" name="price" value="@money"/>
+                        @{ int userId = userlogic.GetUserIdByUsername(User.Identity.Name); }
+                        <input type="hidden" name="UserId" value="userId"/>
+                    </form>
+
+                  
+        
+                </div>
             }
         }
     }
-    <div>
-        
-    </div>
-
 

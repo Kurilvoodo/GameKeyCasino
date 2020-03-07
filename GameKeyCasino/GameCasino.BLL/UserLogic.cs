@@ -29,5 +29,9 @@ namespace GameCasino.BLL
         {
             return _userDao.Authentification(user);
         }
+        public int GetUserIdByUsername(string username)
+        {
+            return _userDao.GetUserIdByUsername(username);
+        }
     }
 }

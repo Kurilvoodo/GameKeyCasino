@@ -8,5 +8,6 @@ namespace GameCasino.Dao.Interfaces
         void AddMoney(int idUser,decimal money);
         void RemoveMoney(int idUser,decimal money);
         bool Authentification(User user);
+        int GetUserIdByUsername(string username);
     }
 }

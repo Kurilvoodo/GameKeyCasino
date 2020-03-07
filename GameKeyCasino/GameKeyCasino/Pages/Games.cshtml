@@ -15,8 +15,8 @@
                 <div class="container-for-games">
                     @{decimal price = game._price; }
                     <h1 class="h1-game">@game._name <strike>@price р.</strike></h1>
-                    @{string a = game._name+".jpg";}
-                    <img class="img" src="~/img/@a" >
+                    @{string imageName = game._name+".jpg";}
+                    <img class="img" src="~/img/@imageName" >
                     <form action="~/Pages/GameShow.cshtml" method="post" enctype="multipart/form-data">
                         <input  type="hidden" name="Action" value="ShowGame" />
                         <input  type="hidden" name="Id" value="@game._id"/>

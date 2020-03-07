@@ -13,7 +13,6 @@ namespace GameCasino.Entities
         {
             _username = username;
             _password = password;
-            _bill = 0;
         }
 
         public User(int id, string username, decimal bill)
