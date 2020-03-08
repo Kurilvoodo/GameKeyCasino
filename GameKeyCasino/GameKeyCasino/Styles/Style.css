@@ -101,13 +101,14 @@ header {
 .container-for-games-on-show-page {
     background: linear-gradient(90deg, rgba(223,206,2,1) 26%, rgba(80,215,228,0.9836135137648809) 47%, rgba(120,15,195,1) 94%);
     padding: 10px;
-    display: inline-block;
     width: 600px;
     height: 400px;
     left: 200px;
     right: 25px;
     border-radius: 25px;
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.76);
+    margin-left:auto;
+    margin-right:auto;
 }
 .img-big {
     margin-left: 45px;
@@ -118,4 +119,53 @@ header {
 .img-coin{
     height:40px;
     width:39px;
+}
+.container-for-chests {
+    display: inline-block;
+    background: radial-gradient(circle, rgba(159,8,246,1) 15%, rgba(211,145,87,1) 53%, rgba(255,218,1,1) 97%);
+    padding: 10px;
+    width: 1700px;
+    height: 600px;
+    left: 200px;
+    right: 25px;
+    border-radius: 25px;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.76);
+    margin-left: auto;
+    margin-right: auto;
+}
+.chest-B {
+    border-radius: 25px;
+    border-color: #986960;
+    margin-left: 45px;
+    margin-top: 40px;
+    height: 320px;
+    width: 520px;
+}
+.chest-A {
+    border-radius: 25px;
+    border-color: gold;
+    margin-left: 45px;
+    margin-top: 40px;
+    height: 320px;
+    width: 520px;
+}
+.chest-S {
+    border-radius: 25px;
+    border-color: #562588;
+    margin-left: 45px;
+    margin-top: 40px;
+    height: 320px;
+    width: 520px;
+}
+.spin-button {
+    display: block;
+    height: 600px;
+    width: 340px;
+    margin: auto;
+    border-radius: 50px;
+    border: none;
+    margin-bottom: 25px;
+    background-color: #56ed39;
+    font-size: 23px;
+    font-weight: bold;
 }

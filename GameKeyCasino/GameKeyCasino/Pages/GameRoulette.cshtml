@@ -4,9 +4,30 @@
 
 
 
-
+@section Header{}
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Game Roullette</title>
 </head>
-
+<div class="container-for-chests">
+    <div class="chest-B">
+        <img class="img" src="~/img/chestB.jpg">
+        <form action="~/Pages/SpinTypeB.cshtml" method="post" enctype="multipart/form-data">
+            <button type="submit" class="spin-button">Spin for 250 <img src="~/img/lucky_coin.jpg" class="img-coin"> </button>
+        </form>
+    </div>
+    <div class="chest-A">
+        <img class="img" src="~/img/chestA.jpg">
+        <form action="~/Pages/SpinTypeA.cshtml" method="post" enctype="multipart/form-data">
+            <button type="submit" class="spin-button">Spin for 500 <img src="~/img/lucky_coin.jpg" class="img-coin"> </button>
+        </form>
+    </div>
+    <div class="chest-S">
+        <img class="img" src="~/img/chestS.jpg">
+        <form action="~/Pages/SpinTypeS.cshtml" method="post" enctype="multipart/form-data">
+            <button type="submit" class="spin-button">Spin for 750 <img src="~/img/lucky_coin.jpg" class="img-coin"> </button>
+        </form>
+    </div>
+    
+   
+</div>

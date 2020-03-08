@@ -117,6 +117,8 @@
     <Content Include="Pages\Login\RegistrationFailed.cshtml" />
     <Content Include="Pages\GameShow.cshtml" />
     <Content Include="Pages\PaidKeyPage.cshtml" />
+    <Content Include="Pages\Nomoney.cshtml" />
+    <Content Include="Pages\Replenish.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
