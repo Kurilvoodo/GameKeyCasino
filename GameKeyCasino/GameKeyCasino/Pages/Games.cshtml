@@ -4,28 +4,42 @@
     Layout = "~/Layouts/GeneralLayout.cshtml";
     var gamelogic = DependencyResolver.GameLogic;
 }
-    
-@section Header{}
-    
-<body>
-    <h1 class="h1-title">Our Games</h1>
-        
-            @foreach (Game game in gamelogic.GetAllGames())
-            {
-                <div class="container-for-games">
-                    @{decimal price = game._price; }
-                    <h1 class="h1-game">@game._name <strike>@price р.</strike></h1>
-                    @{string imageName = game._name+".jpg";}
-                    <img class="img" src="~/img/@imageName" >
-                    <form action="~/Pages/GameShow.cshtml" method="post" enctype="multipart/form-data">
-                        <input  type="hidden" name="Action" value="ShowGame" />
-                        <input  type="hidden" name="Id" value="@game._id"/>
-                        <button class="button-purchase"> Purchase for @game._ourPrice р.</button>
-                    </form>
-                </div>
-            }
-        
 
-    
+@section Header{}
+
+<body>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <h1 class="h1-title">To buy games you have to Sign in</h1>
+    }
+    <h1 class="h1-title">Our Games</h1>
+
+    @foreach (Game game in gamelogic.GetAllGames())
+    {
+<div class="container-for-games">
+    @{decimal price = game._price; }
+    <h1 class="h1-game">@game._name <strike>@price р.</strike></h1>
+    @{string imageName = game._name + ".jpg";}
+    <img class="img" src="~/img/@imageName">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form action="~/Pages/GameShow.cshtml" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="Action" value="ShowGame" />
+            <input type="hidden" name="Id" value="@game._id" />
+            <button type="submit" class="button-purchase"> Purchase for @game._ourPrice р.</button>
+        </form>
+    }
+    else
+    {
+        <form action="~/Pages/Login/Authorization.cshtml" method="post" enctype="multipart/form-data">
+            <button type="submit" class="button-purchase"> Purchase for @game._ourPrice р.</button>
+        </form>
+    }
+
+</div>
+    }
+
+
+
 </body>
 

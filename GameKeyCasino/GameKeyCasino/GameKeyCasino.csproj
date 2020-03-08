@@ -106,7 +106,7 @@
     <Content Include="Pages\Games.cshtml" />
     <Content Include="Pages\GameRoulette.cshtml" />
     <Content Include="Pages\About.cshtml" />
-    <Content Include="Pages\Login\Login.cshtml" />
+    <Content Include="Pages\Login\Authorization.cshtml" />
     <Content Include="Pages\SpinTypeA.cshtml" />
     <Content Include="Pages\SpinTypeB.cshtml" />
     <Content Include="Pages\SpinTypeS.cshtml" />
@@ -116,6 +116,7 @@
     <Content Include="Pages\Login\RegistrationSucces.cshtml" />
     <Content Include="Pages\Login\RegistrationFailed.cshtml" />
     <Content Include="Pages\GameShow.cshtml" />
+    <Content Include="Pages\PaidKeyPage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -15,11 +15,11 @@
     <div class="content">
         <div class="container-for-buttons">
             <h1 class="h1-login">Welcome to Our GameCasino</h1>
-            <form action="~/Pages/Login/SignIn.cshtml">
-                <button class="button-sign-in">Sign in</button>
+            <form action="~/Pages/Login/SignIn.cshtml"  method="post" enctype="multipart/form-data">
+                <button type="submit" class="button-sign-in">Sign in</button> 
             </form>
-            <form action="~/Pages/Login/SignUp.cshtml">
-                <button class="button-sign-up">Sign up</button>
+            <form action="~/Pages/Login/SignUp.cshtml"  method="post" enctype="multipart/form-data">
+                <button type="submit" class="button-sign-up">Sign up</button>
             </form>
             
         </div>

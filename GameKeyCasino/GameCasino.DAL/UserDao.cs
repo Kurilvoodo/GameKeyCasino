@@ -150,25 +150,19 @@ namespace GameCasino.DAL
 
                 var resultCommand = command.ExecuteScalar();
 
-                if ((int)resultCommand > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return (int)resultCommand > 0;
 
             }
                 #endregion
         }
-        public int GetUserIdByUsername(string username)
+        public decimal GetUserBillByUsername(string username)
         {
+            #region GetUserBillByUsername (string username)
             using (var connection = new SqlConnection(_connectionString))
             {
                 var command = connection.CreateCommand();
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "dbo.GetUserIdByUsername";
+                command.CommandText = "dbo.GetUserBillByUsername";
 
                 var usernameParameter = new SqlParameter()
                 {
@@ -179,14 +173,15 @@ namespace GameCasino.DAL
                 };
                 command.Parameters.Add(usernameParameter);
                 connection.Open();
-                int UserId=0;
+                decimal UserBill=0;
                 var reader = command.ExecuteReader();
                 while(reader.Read())
                 {
-                    UserId = (int)reader["Id"];
+                    UserBill = (decimal)reader["Bill"];
                 }
-                return UserId;
+                return UserBill;
             }
+            #endregion
         }
     }
 }

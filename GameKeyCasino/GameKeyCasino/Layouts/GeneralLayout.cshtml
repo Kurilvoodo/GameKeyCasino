@@ -1,5 +1,9 @@
-﻿@{
+﻿@using GameCasino.Ioc
+@using GameCasino.Entities
+@{
     Layout = null;
+    var userLogic = DependencyResolver.UserLogic;
+
 }
 
 <!DOCTYPE html>
@@ -8,7 +12,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title></title>
-    <link href="~/Styles/Style.css" rel="stylesheet"/>
+    <link href="~/Styles/Style.css" rel="stylesheet" />
 </head>
 <body>
     <div>
@@ -17,12 +21,21 @@
             <a href="~/Pages/Games.cshtml" class="menu-element">Games</a>
             <a href="~/Pages/GameRoulette.cshtml" class="menu-element">Game Roulette</a>
             <a href="~/Pages/About.cshtml" class="menu-element">About us</a>
-            <a href="~/Pages/Login/Login.cshtml" class="menu-element">Login</a>
+            <a href="~/Pages/Login/Authorization.cshtml" class="menu-element">Login</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                decimal money = userLogic.GetUserBillByUsername(User.Identity.Name); 
+                <div class="menu-element">
+                    @User.Identity.Name @money <img src="~/img/lucky_coin.jpg" class="img-coin">
+                </div>
+            }
+
+
         </header>
     </div>
     <div class="content">
         @RenderBody()
-        
+
     </div>
 </body>
 </html>
