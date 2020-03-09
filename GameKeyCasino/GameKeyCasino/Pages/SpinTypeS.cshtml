@@ -1,17 +1,43 @@
-﻿@{
+﻿@using GameCasino.Entities
+@using GameCasino.Ioc
+@{
     Layout = "~/Layouts/GeneralLayout.cshtml";
+    var gameCodeLogic = DependencyResolver.GameCodeLogic;
+    var gameLogic = DependencyResolver.GameLogic;
+    var userLogic = DependencyResolver.UserLogic;
 }
 
-<!DOCTYPE html>
+@section Header{}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+@if (IsPost)
+{
+    if (Request["Action"] != null &&
+        Request["Action"] != "" &&
+        Request["Action"] == "Spin750")
+    {
+        User currentUser = userLogic.GetUserByUsername(User.Identity.Name);
+        if (currentUser._bill >= 750)
+        {
+            List<Game> games = new List<Game>();
+            foreach (Game game in gameLogic.GetGameByType(2))
+            {
+                games.Add(game);
+            }
+            Random rnd = new Random();
+            int index = rnd.Next(games.Count());
+            string gameCode = gameCodeLogic.GetGameCodeByIdGame(games[index]._id)._gameCode;
+            userLogic.RemoveMoney(currentUser._id, 750);
+            string imageName = games[index]._name + ".jpg";
+            <h1 class="h1-title">You've win a @games[index]._name</h1>
+            <div class="container-for-games-on-show-page">
+                <img class="img-big" src="~/img/@imageName">
+                <p class="h1-game">Here's your key</p>
+                <p class="h1-game"> @gameCode </p>
+            </div>
+        }
+        else
+        {
+            Response.Redirect("~/Pages/Nomoney.cshtlm");
+        }
+    }
+}

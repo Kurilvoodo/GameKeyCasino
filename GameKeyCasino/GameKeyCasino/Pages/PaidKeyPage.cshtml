@@ -25,8 +25,8 @@
    decimal.TryParse(Request["Price"], out Price) &&
    int.TryParse(Request["GameId"], out gameId))
     {
-        decimal userBill = userLogic.GetUserBillByUsername(User.Identity.Name);
-        if (userBill >= Price)
+        User currentUser = userLogic.GetUserByUsername(User.Identity.Name);
+        if (currentUser._bill >= Price)
         {
             Game game = gameLogic.GetGameById(gameId);
             GameCode gameCode = gameCodeLogic.GetGameCodeByIdGame(gameId);
@@ -37,6 +37,7 @@
                 <p class="h1-game">Here's your key</p>
                 <p class="h1-game"> @gameCode._gameCode </p>
             </div>
+            userLogic.RemoveMoney(currentUser._id,Price);
         }
         else
         {

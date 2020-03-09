@@ -155,7 +155,7 @@ namespace GameCasino.DAL
             }
                 #endregion
         }
-        public decimal GetUserBillByUsername(string username)
+        public User GetUserByUsername(string username)
         {
             #region GetUserBillByUsername (string username)
             using (var connection = new SqlConnection(_connectionString))
@@ -173,13 +173,16 @@ namespace GameCasino.DAL
                 };
                 command.Parameters.Add(usernameParameter);
                 connection.Open();
-                decimal UserBill=0;
+                User  userinfo = null;
                 var reader = command.ExecuteReader();
                 while(reader.Read())
                 {
-                    UserBill = (decimal)reader["Bill"];
+                    userinfo= new User((int)reader["Id"], 
+                        reader["Username"] as string,
+                        (decimal)reader["Bill"]
+                        ) ;
                 }
-                return UserBill;
+                return userinfo;
             }
             #endregion
         }

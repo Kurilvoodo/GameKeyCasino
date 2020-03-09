@@ -24,9 +24,9 @@
             <a href="~/Pages/Login/Authorization.cshtml" class="menu-element">Login</a>
             @if (User.Identity.IsAuthenticated)
             {
-                decimal money = userLogic.GetUserBillByUsername(User.Identity.Name); 
+                User user = userLogic.GetUserByUsername(User.Identity.Name); 
                 <div class="menu-element">
-                    @User.Identity.Name @money <img src="~/img/lucky_coin.jpg" class="img-coin">
+                    @User.Identity.Name @user._bill <img src="~/img/lucky_coin.jpg" class="img-coin">
                 </div>
             }
 

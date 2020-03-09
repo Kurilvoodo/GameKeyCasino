@@ -1,17 +1,19 @@
-﻿@{
-    Layout = null;
+﻿@using GameCasino.Ioc
+@using GameCasino.Entities
+@{
+    Layout = "~/Layouts/GeneralLayout.cshtml";
+    var userLogic = DependencyResolver.UserLogic;
 }
+@section Header{}
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+@if (User.Identity.IsAuthenticated)
+{
+    <form action="~/Pages/AddMoney.cshtml" method="post" enctype="multipart/form-data">
+        <input type="text" name="money" value=""/>
+        <button type="submit" class="button-purchase">Replenish</button>
+        </form>
+}
+else
+{
+    Response.Redirect("~/Pages/Login/Authorization.cshtml");
+}

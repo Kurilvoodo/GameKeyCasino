@@ -1,0 +1,29 @@
+﻿@using GameCasino.Entities
+@using GameCasino.Ioc
+@{
+    Layout = "~/Layouts/GeneralLayout.cshtml";
+    var userLogic = DependencyResolver.UserLogic;
+}
+
+@if (IsPost)
+{
+    if (User.Identity.IsAuthenticated)
+    {
+        decimal money = 0;
+        if (Request["money"] != null &&
+        Request["money"] != "" &&
+        decimal.TryParse(Request["money"], out money))
+        {
+            User user = userLogic.GetUserByUsername(User.Identity.Name);
+            userLogic.AddMoney(user._id, money);
+            <h1 class="h1-title"> You bill is udpated <br> Return to Games </h1>
+            <a href="~/Pages/Games.cshtml">To main Games page</a>
+        }
+    }
+    else
+    {
+        Response.Redirect("~/Pages/Login/Authorization.cshtml");
+    }
+
+}
+

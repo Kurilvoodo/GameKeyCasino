@@ -121,7 +121,7 @@ header {
     width:39px;
 }
 .container-for-chests {
-    display: inline-block;
+    display:block;
     background: radial-gradient(circle, rgba(159,8,246,1) 15%, rgba(211,145,87,1) 53%, rgba(255,218,1,1) 97%);
     padding: 10px;
     width: 1700px;
@@ -134,33 +134,36 @@ header {
     margin-right: auto;
 }
 .chest-B {
+    display:inline-block;
     border-radius: 25px;
     border-color: #986960;
-    margin-left: 45px;
+    margin-left: 40px;
     margin-top: 40px;
     height: 320px;
     width: 520px;
 }
 .chest-A {
+    display: inline-block;
     border-radius: 25px;
     border-color: gold;
-    margin-left: 45px;
+    margin-left: 40px;
     margin-top: 40px;
     height: 320px;
     width: 520px;
 }
 .chest-S {
+    display: inline-block;
     border-radius: 25px;
     border-color: #562588;
-    margin-left: 45px;
+    margin-left: 40px;
     margin-top: 40px;
     height: 320px;
     width: 520px;
 }
 .spin-button {
     display: block;
-    height: 600px;
-    width: 340px;
+    height: 80px;
+    width: 125px;
     margin: auto;
     border-radius: 50px;
     border: none;
