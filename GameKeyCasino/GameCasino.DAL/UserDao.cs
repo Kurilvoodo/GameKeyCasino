@@ -191,5 +191,26 @@ namespace GameCasino.DAL
             }
             #endregion
         }
+        public int GetIdRoleByRoleName(string roleName)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "GetIdRoleByRoleName";
+
+                var roleNameParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@RoleName",
+                    Value = roleName,
+                    Direction = ParameterDirection.Input
+                };
+                command.Parameters.Add(roleNameParameter);
+
+                connection.Open();
+                return (int)command.ExecuteScalar();
+            }
+        }
     }
 }

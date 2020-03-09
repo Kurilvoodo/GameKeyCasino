@@ -1,6 +1,7 @@
 ﻿@using GameCasino.Ioc;
 @using GameCasino.BLL;
 @using GameCasino.Entities;
+@using GameKeyCasino
 @{
     Layout = null;
 }
@@ -54,11 +55,13 @@
                 userLogic.Add(new User(Request["Username"], Request["Password"]));
                 Response.Redirect("~/Pages/Login/RegistrationSucces.cshtml");
             }
-            catch (System.Data.SqlClient.SqlException)
+            catch (System.Data.SqlClient.SqlException ex)
             {
                 Response.Redirect("~/Pages/Login/RegistrationFailed.cshtml");
+                Logger.Log.Error("Failed registration", ex);
             }
         }
     }
 }
 
+<script src="~/Scripts/validateForm.js"></script>

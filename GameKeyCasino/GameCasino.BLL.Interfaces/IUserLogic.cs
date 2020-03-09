@@ -9,5 +9,6 @@ namespace GameCasino.BLL.Interfaces
         void RemoveMoney(int idUser,decimal money);
         bool Authentification(User user);
         User GetUserByUsername(string user);
+        int GetIdRoleByRoleName(string roleName);
     }
 }

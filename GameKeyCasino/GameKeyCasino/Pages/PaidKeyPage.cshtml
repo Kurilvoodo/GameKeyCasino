@@ -1,5 +1,6 @@
 ﻿@using GameCasino.Entities
 @using GameCasino.Ioc
+@using GameKeyCasino
 @{
     Layout = "~/Layouts/GeneralLayout.cshtml";
     var gameCodeLogic = DependencyResolver.GameCodeLogic;
@@ -25,24 +26,33 @@
    decimal.TryParse(Request["Price"], out Price) &&
    int.TryParse(Request["GameId"], out gameId))
     {
-        User currentUser = userLogic.GetUserByUsername(User.Identity.Name);
-        if (currentUser.Bill >= Price)
+        try
         {
-            Game game = gameLogic.GetGameById(gameId);
-            GameCode gameCode = gameCodeLogic.GetGameCodeByIdGame(gameId);
-            string imageName = game.Name + ".jpg";
-            userLogic.RemoveMoney(currentUser.Id,Price);
-            <h1 class="h1-title">You've bought a @game.Name</h1>
-            <div class="container-for-games-on-show-page">
-                <img class="img-big" src="~/img/@imageName">
-                <p class="h1-game">Here's your key</p>
-                <p class="h1-game"> @gameCode.Code </p>
-            </div>
-            
+            User currentUser = userLogic.GetUserByUsername(User.Identity.Name);
+            if (currentUser.Bill >= Price)
+            {
+                Game game = gameLogic.GetGameById(gameId);
+                GameCode gameCode = gameCodeLogic.GetGameCodeByIdGame(gameId);
+                string imageName = game.Name + ".jpg";
+                userLogic.RemoveMoney(currentUser.Id, Price);
+                <h1 class="h1-title">You've bought a @game.Name</h1>
+                <div class="container-for-games-on-show-page">
+                    <img class="img-big" src="~/img/@imageName">
+                    <p class="h1-game">Here's your key</p>
+                    <p class="h1-game"> @gameCode.Code </p>
+                </div>
+
+            }
+
+            else
+            {
+                Response.Redirect("~/Pages/Nomoney.cshtml");
+            }
         }
-        else
+        catch (System.Data.SqlClient.SqlException ex)
         {
-            Response.Redirect("~/Pages/Nomoney.cshtml");
+            Logger.Log.Error("PaidKeyPage error", ex);
+
         }
     }
 }

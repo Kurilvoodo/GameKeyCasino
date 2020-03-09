@@ -1,7 +1,3 @@
-INSERT INTO Users (Username,Password,Bill) VALUES ('admin','Admin',20000);
-INSERT INTO Users (Username,Password,Bill) VALUES ('test','tester',5000);
-INSERT INTO Users (Username,Password,Bill) VALUES ('user','qerty',0);
-
 INSERT INTO Games (typeOfGame,GameName,BasePrice,OurPrice) VALUES (0,'Apex Legends',799,300);
 INSERT INTO Games (typeOfGame,GameName,BasePrice,OurPrice) VALUES (1,'Biomutant',1999,1169);
 INSERT INTO Games (typeOfGame,GameName,BasePrice,OurPrice) VALUES (2,'CoDMW',1999,1099);

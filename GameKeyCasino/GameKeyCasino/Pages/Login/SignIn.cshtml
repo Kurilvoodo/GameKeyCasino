@@ -1,6 +1,7 @@
 ﻿@using GameCasino.Ioc;
 @using GameCasino.BLL;
 @using GameCasino.Entities;
+@using GameKeyCasino;
 @{
     Layout = null;
 }
@@ -41,14 +42,18 @@
                 Request["Password"] != "")
             {
                 var userLogic = DependencyResolver.UserLogic;
-                bool isUser = userLogic.Authentification(new User(Request["Username"], Request["Password"]));
-                if (isUser)
+                try
                 {
-                    FormsAuthentication.SetAuthCookie(Request["Username"], createPersistentCookie: true);
-                    Response.Redirect("~/Pages/Games.cshtml");
+                    bool isUser = userLogic.Authentification(new User(Request["Username"], Request["Password"]));
+                    if (isUser)
+                    {
+                        FormsAuthentication.SetAuthCookie(Request["Username"], createPersistentCookie: true);
+                        Response.Redirect("~/Pages/Games.cshtml");
+                    }
                 }
-                else
+                catch (System.Data.SqlClient.SqlException ex)
                 {
+                    Logger.Log.Error("Failed Sign up", ex);
                     Response.Redirect("~/Pages/Login/SignInError.cshtml");
                 }
             }

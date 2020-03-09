@@ -1,5 +1,6 @@
 ﻿@using GameCasino.Entities
 @using GameCasino.Ioc
+@using GameKeyCasino
 @{
     Layout = "~/Layouts/GeneralLayout.cshtml";
     var gameCodeLogic = DependencyResolver.GameCodeLogic;
@@ -15,29 +16,36 @@
         Request["Action"] != "" &&
         Request["Action"] == "Spin250")
     {
-        User currentUser = userLogic.GetUserByUsername(User.Identity.Name);
-        if (currentUser.Bill >= 250)
+        try
         {
-            List<Game> games = new List<Game>();
-            foreach (Game game in gameLogic.GetGameByType(0))
+            User currentUser = userLogic.GetUserByUsername(User.Identity.Name);
+            if (currentUser.Bill >= 250)
             {
-                games.Add(game);
-            }
-            Random rnd = new Random();
-            int index = rnd.Next(games.Count());
-            string gameCode = gameCodeLogic.GetGameCodeByIdGame(games[index].Id).Code;
-            userLogic.RemoveMoney(currentUser.Id, 250);
-            string imageName = games[index].Name + ".jpg";
+                List<Game> games = new List<Game>();
+                foreach (Game game in gameLogic.GetGameByType(0))
+                {
+                    games.Add(game);
+                }
+                Random rnd = new Random();
+                int index = rnd.Next(games.Count());
+                string gameCode = gameCodeLogic.GetGameCodeByIdGame(games[index].Id).Code;
+                userLogic.RemoveMoney(currentUser.Id, 250);
+                string imageName = games[index].Name + ".jpg";
             <h1 class="h1-title">You've win a @games[index].Name</h1>
             <div class="container-for-games-on-show-page">
                 <img class="img-big" src="~/img/@imageName">
                 <p class="h1-game">Here's your key</p>
                 <p class="h1-game"> @gameCode </p>
             </div>
+            }
+            else
+            {
+                Response.Redirect("~/Pages/Nomoney.cshtlm");
+            }
         }
-        else
+        catch(System.Data.SqlClient.SqlException ex)
         {
-            Response.Redirect("~/Pages/Nomoney.cshtlm");
+            Logger.Log.Error("Spint type B error",ex);
         }
     }
 }

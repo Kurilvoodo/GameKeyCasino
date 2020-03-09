@@ -89,7 +89,7 @@ namespace GameCasino.DAL
             {
                 var command = connection.CreateCommand();
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "dbo.GetGameById";
+                command.CommandText = "dbo.GetGameByType";
 
                 var typeParameter = new SqlParameter()
                 {

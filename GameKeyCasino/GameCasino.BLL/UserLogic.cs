@@ -45,5 +45,9 @@ namespace GameCasino.BLL
         {
             return _userDao.GetUserByUsername(username);
         }
+        public int GetIdRoleByRoleName(string roleName)
+        {
+            return _userDao.GetIdRoleByRoleName(roleName);
+        }
     }
 }

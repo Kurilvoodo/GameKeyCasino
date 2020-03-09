@@ -1,5 +1,6 @@
 ﻿@using GameCasino.Ioc
 @using GameCasino.Entities
+@using GameKeyCasino
 @{
     Layout = "~/Layouts/GeneralLayout.cshtml";
     var gamelogic = DependencyResolver.GameLogic;
@@ -7,14 +8,15 @@
 
 @section Header{}
 
-    <body>
-        @if (!User.Identity.IsAuthenticated)
-        {
-            <h1 class="h1-title">To buy games you have to Sign in</h1>
-        }
-        <h1 class="h1-title">Our Games</h1>
-
-        @foreach (Game game in gamelogic.GetAllGames())
+<body>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <h1 class="h1-title">To buy games you have to Sign in</h1>
+    }
+    <h1 class="h1-title">Our Games</h1>
+    @try
+    {
+        foreach (Game game in gamelogic.GetAllGames())
         {
             <div class="container-for-games">
                 @{decimal price = game.Price; }
@@ -40,10 +42,12 @@
 
             </div>
         }
+    }
+    catch(System.Data.SqlClient.SqlException ex)
+    {
+        Logger.Log.Error("Game display error", ex);
+    }
 
-        <form action="~/Pages/GameRoulette.cshtml" method="post" enctype="multipart/form-data">
-            <button type="submit" class="spin-button">SPIN IT OUT!</button>
-        </form>
+</body>
 
-    </body>
 

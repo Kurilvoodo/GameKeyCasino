@@ -1,5 +1,6 @@
 ﻿@using GameCasino.Ioc
 @using GameCasino.Entities
+@using GameKeyCasino
 @{
     Layout = "~/Layouts/GeneralLayout.cshtml";
 
@@ -17,20 +18,27 @@
             int.TryParse(Request["Id"], out idGame))
         {
             var gamelogic = DependencyResolver.GameLogic;
+            try
+            {
+                Game game = gamelogic.GetGameById(idGame);
 
-            Game game = gamelogic.GetGameById(idGame);
-            string imageName = game.Name + ".jpg";
-            decimal money = game.OurPrice;
-            <h1 class="h1-title">@game.Name for @money</h1>
-            <div class="container-for-games-on-show-page">
-                <img class="img-big" src="~/img/@imageName">
-                <form action="~/Pages/PaidKeyPage.cshtml" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="Action" value="BuyGame" />
-                    <input type="hidden" name="Price" value=@money />
-                    <input type="hidden" name="GameId" value=@idGame>
-                    <button type="submit" class="button-purchase">Give me the code!</button>
-                </form>
-            </div>
+                string imageName = game.Name + ".jpg";
+                decimal money = game.OurPrice;
+                <h1 class="h1-title">@game.Name for @money</h1>
+                <div class="container-for-games-on-show-page">
+                    <img class="img-big" src="~/img/@imageName">
+                    <form action="~/Pages/PaidKeyPage.cshtml" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="Action" value="BuyGame" />
+                        <input type="hidden" name="Price" value=@money />
+                        <input type="hidden" name="GameId" value=@idGame>
+                        <button type="submit" class="button-purchase">Give me the code!</button>
+                    </form>
+                </div>
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                Logger.Log.Error("Game show error", ex);
+            }
             <h1 class="h1-title">Or you can win it from Game Roulette</h1>
             <form action="~/Pages/GameRoulette.cshtml" method="post" enctype="multipart/form-data">
                 <button type="submit" class="button-sign-in">SPIN IT OUT!</button>

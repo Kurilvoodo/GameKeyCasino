@@ -1,5 +1,6 @@
 ﻿@using GameCasino.Entities
 @using GameCasino.Ioc
+@using GameKeyCasino;
 @{
     Layout = "~/Layouts/GeneralLayout.cshtml";
     var userLogic = DependencyResolver.UserLogic;
@@ -14,9 +15,16 @@
         Request["money"] != "" &&
         decimal.TryParse(Request["money"], out money))
         {
-            User user = userLogic.GetUserByUsername(User.Identity.Name);
-            userLogic.AddMoney(user.Id, money);
+            try
+            {
+                User user = userLogic.GetUserByUsername(User.Identity.Name);
+                userLogic.AddMoney(user.Id, money);
             <h1 class="h1-title"> You bill is udpated <br> Return to Games </h1>
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                Logger.Log.Error("Add money error", ex);
+            }
             <a href="~/Pages/Games.cshtml">To main Games page</a>
         }
     }
