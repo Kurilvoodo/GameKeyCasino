@@ -58,7 +58,7 @@ namespace GameCasino.DAL
             #endregion
         }
 
-        public void unable()
+        public void Unable()
         {
             throw new NotImplementedException();
         }

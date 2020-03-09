@@ -4,7 +4,7 @@ using GameCasino.Dao.Interfaces;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient; 
+using System.Data.SqlClient;
 
 namespace GameCasino.DAL
 {
@@ -24,16 +24,16 @@ namespace GameCasino.DAL
                 {
                     DbType = DbType.String,
                     ParameterName = "@Username",
-                    Value = user._username,
+                    Value = user.Username,
                     Direction = ParameterDirection.Input
                 };
                 command.Parameters.Add(usernameParameter);
 
                 var passwordParameter = new SqlParameter()
                 {
-                    DbType = DbType.String,
+                    DbType = DbType.Binary,
                     ParameterName = "@Password",
-                    Value = user._password,
+                    Value = user.HashPassword,
                     Direction = ParameterDirection.Input
                 };
                 command.Parameters.Add(passwordParameter);
@@ -42,7 +42,7 @@ namespace GameCasino.DAL
                 {
                     DbType = DbType.Decimal,  //ПЕРЕПРАВИТЬ ТИПЫ DbType ВЕЗДЕ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     ParameterName = "@Bill",
-                    Value = user._bill,
+                    Value = user.Bill,
                     Direction = ParameterDirection.Input
                 };
                 command.Parameters.Add(billParameter);
@@ -53,7 +53,7 @@ namespace GameCasino.DAL
             #endregion
         }
 
-        public void AddMoney(int idUser,decimal money)
+        public void AddMoney(int idUser, decimal money)
         {
             #region AddMoney(int idUser,float money)
             using (var connection = new SqlConnection(_connectionString))
@@ -84,10 +84,10 @@ namespace GameCasino.DAL
                 command.ExecuteNonQuery();
 
             }
-                #endregion
+            #endregion
         }
 
-        public void RemoveMoney(int idUser,decimal money)
+        public void RemoveMoney(int idUser, decimal money)
         {
             #region RemoveMoney(int idUser, float money)
             using (var connection = new SqlConnection(_connectionString))
@@ -109,7 +109,7 @@ namespace GameCasino.DAL
                 {
                     DbType = DbType.Decimal,
                     ParameterName = "@Money",
-                    Value = idUser,
+                    Value = money,
                     Direction = ParameterDirection.Input
                 };
                 command.Parameters.Add(moneyParameter);
@@ -119,7 +119,7 @@ namespace GameCasino.DAL
             }
             #endregion
         }
-        public bool Authentification(User user) 
+        public bool Authentification(User user)
         {
             #region bool Authentification(User user)
             using (var connection = new SqlConnection(_connectionString))
@@ -132,16 +132,16 @@ namespace GameCasino.DAL
                 {
                     DbType = DbType.String,
                     ParameterName = "@Username",
-                    Value = user._username,
+                    Value = user.Username,
                     Direction = ParameterDirection.Input
                 };
                 command.Parameters.Add(usernameParameter);
 
                 var passwordParameter = new SqlParameter()
                 {
-                    DbType = DbType.String,
+                    DbType = DbType.Binary,
                     ParameterName = "@Password",
-                    Value = user._password,
+                    Value = user.HashPassword,
                     Direction = ParameterDirection.Input
                 };
                 command.Parameters.Add(passwordParameter);
@@ -153,7 +153,7 @@ namespace GameCasino.DAL
                 return (int)resultCommand > 0;
 
             }
-                #endregion
+            #endregion
         }
         public User GetUserByUsername(string username)
         {
@@ -162,7 +162,7 @@ namespace GameCasino.DAL
             {
                 var command = connection.CreateCommand();
                 command.CommandType = CommandType.StoredProcedure;
-                command.CommandText = "dbo.GetUserBillByUsername";
+                command.CommandText = "dbo.GetUserByUsername";
 
                 var usernameParameter = new SqlParameter()
                 {
@@ -173,14 +173,19 @@ namespace GameCasino.DAL
                 };
                 command.Parameters.Add(usernameParameter);
                 connection.Open();
-                User  userinfo = null;
+                User userinfo = null;
                 var reader = command.ExecuteReader();
-                while(reader.Read())
+                while (reader.Read())
                 {
-                    userinfo= new User((int)reader["Id"], 
-                        reader["Username"] as string,
-                        (decimal)reader["Bill"]
-                        ) ;
+                    int id = (int)reader["Id"];
+                    string _username = reader["Username"] as string;
+                    decimal bill = (decimal)reader["Bill"];
+                    userinfo = new User()
+                    {
+                        Id = id,
+                        Username = _username,
+                        Bill = bill
+                    };
                 }
                 return userinfo;
             }

@@ -6,12 +6,12 @@ namespace GameCasino.Entities
 {
     public class GameCode
     {
-        public string _gameCode { get; }
-        public int _enabled { get; }
+        public string Code { get; set; }
+        public int Enabled { get; set; }
         public GameCode(string gameCode, int enabled)
         {
-            _gameCode = gameCode;
-            _enabled = enabled;
+            Code = gameCode;
+            Enabled = enabled;
         }
     }
 }

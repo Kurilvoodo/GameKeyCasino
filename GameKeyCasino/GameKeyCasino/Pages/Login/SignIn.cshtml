@@ -18,8 +18,7 @@
         <div class="container-for-buttons">
             <h1 class="h1-login">Sign In</h1>
             <form action="~/Pages/Login/SignIn.cshtml" method="post" enctype="multipart/form-data">
-                <input class="hidden-input" type="text" name="Action" value="signin" />
-                <label class="sigin-form-label" for="username-signin">Username</label>
+                <input type="hidden" name="Action" value="signin" />
                 <input required maxlength="30" minlength="4" class="sigin-form-input" type="text" id="username-signin" name="Username" value="" placeholder="Username" />
 
                 <label class="sigin-form-label" for="password-signin">Password</label>
@@ -46,7 +45,7 @@
                 if (isUser)
                 {
                     FormsAuthentication.SetAuthCookie(Request["Username"], createPersistentCookie: true);
-                    Response.Redirect("~/index.cshtml");
+                    Response.Redirect("~/Pages/Games.cshtml");
                 }
                 else
                 {

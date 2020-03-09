@@ -34,31 +34,31 @@
     </div>
 </body>
 </html>
-@{ 
-    if (IsPost)
+
+@if (IsPost)
+{
+    if (Request["Action"] != null &&
+        Request["Action"] == "signup")
     {
-        if (Request["Action"] != null &&
-            Request["Action"] == "signup")
+        if (Request["Username"] != null &&
+            Request["Password"] != null &&
+            Request["RepeatPassword"] != null &&
+            Request["Username"] != "" &&
+            Request["Password"] != "" &&
+            Request["RepeatPassword"] != "" &&
+            Request["Password"] == Request["RepeatPassword"])
         {
-            if (Request["Username"] != null &&
-                Request["Password"] != null &&
-                Request["RepeatPassword"] != null &&
-                Request["Username"] != "" &&
-                Request["Password"] != "" &&
-                Request["RepeatPassword"] != "" &&
-                Request["Password"] == Request["RepeatPassword"])
+            var userLogic = DependencyResolver.UserLogic;
+            try
             {
-                var userLogic = DependencyResolver.UserLogic;
-                try
-                {
-                    userLogic.Add(new User(Request["Username"], Request["Password"]));
-                    Response.Redirect("~/Pages/Login/RegistrationSucces.cshtml");
-                }
-                catch (System.Data.SqlClient.SqlException)
-                {
-                    Response.Redirect("~/Pages/Login/RegistrationFailed.cshtml");
-                }
+                userLogic.Add(new User(Request["Username"], Request["Password"]));
+                Response.Redirect("~/Pages/Login/RegistrationSucces.cshtml");
+            }
+            catch (System.Data.SqlClient.SqlException)
+            {
+                Response.Redirect("~/Pages/Login/RegistrationFailed.cshtml");
             }
         }
     }
 }
+

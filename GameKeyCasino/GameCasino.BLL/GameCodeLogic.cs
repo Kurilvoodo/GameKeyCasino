@@ -20,9 +20,9 @@ namespace GameCasino.BLL
             return _gameCodeDao.GetGameCodeByIdGame(idGame);
         }
 
-        public void unable()
+        public void Unable()
         {
-            _gameCodeDao.unable();
+            _gameCodeDao.Unable();
         }
     }
 }

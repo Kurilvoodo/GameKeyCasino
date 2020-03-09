@@ -4,22 +4,24 @@ namespace GameCasino.Entities
 {
     public class User
     {
-        public int _id { get; set; }
-        public string _username { get; }
-        public string _password { get; }
-        public decimal _bill { get; set; }
-
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public decimal Bill { get; set; }
+        public byte[] HashPassword { get; set; }
         public User( string username, string password)
         {
-            _username = username;
-            _password = password;
+            Username = username;
+            Password = password;
         }
 
         public User(int id, string username, decimal bill)
         {
-            _id = id;
-            _username = username;
-            _bill = bill;
+            Id = id;
+            Username = username;
+            Bill = bill;
         }
+        public User()
+        { }
     }
 }

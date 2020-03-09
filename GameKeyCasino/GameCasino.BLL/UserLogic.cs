@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 using GameCasino.BLL.Interfaces;
 using GameCasino.Dao.Interfaces;
 using GameCasino.Entities;
@@ -13,6 +15,11 @@ namespace GameCasino.BLL
         }
         public void Add(User user)
         {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] password = Encoding.Default.GetBytes(user.Password);
+                user.HashPassword = sha256.ComputeHash(password);
+            }
             _userDao.Add(user);
         }
 
@@ -27,11 +34,16 @@ namespace GameCasino.BLL
         }
         public bool Authentification(User user)
         {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] password = Encoding.Default.GetBytes(user.Password);
+                user.HashPassword = sha256.ComputeHash(password);
+            }
             return _userDao.Authentification(user);
         }
-        public decimal GetUserBillByUsername(string username)
+        public User GetUserByUsername(string username)
         {
-            return _userDao.GetUserBillByUsername(username);
+            return _userDao.GetUserByUsername(username);
         }
     }
 }

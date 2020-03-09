@@ -19,9 +19,9 @@
             var gamelogic = DependencyResolver.GameLogic;
 
             Game game = gamelogic.GetGameById(idGame);
-            string imageName = game._name + ".jpg";
-            decimal money = game._ourPrice;
-            <h1 class="h1-title">@game._name for @money</h1>
+            string imageName = game.Name + ".jpg";
+            decimal money = game.OurPrice;
+            <h1 class="h1-title">@game.Name for @money</h1>
             <div class="container-for-games-on-show-page">
                 <img class="img-big" src="~/img/@imageName">
                 <form action="~/Pages/PaidKeyPage.cshtml" method="post" enctype="multipart/form-data">

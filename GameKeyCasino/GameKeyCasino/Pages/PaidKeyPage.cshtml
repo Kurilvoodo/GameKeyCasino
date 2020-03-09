@@ -1,7 +1,7 @@
 ﻿@using GameCasino.Entities
 @using GameCasino.Ioc
 @{
-    Layout = "~/Layouts/GeneralLayout";
+    Layout = "~/Layouts/GeneralLayout.cshtml";
     var gameCodeLogic = DependencyResolver.GameCodeLogic;
     var gameLogic = DependencyResolver.GameLogic;
     var userLogic = DependencyResolver.UserLogic;
@@ -26,22 +26,23 @@
    int.TryParse(Request["GameId"], out gameId))
     {
         User currentUser = userLogic.GetUserByUsername(User.Identity.Name);
-        if (currentUser._bill >= Price)
+        if (currentUser.Bill >= Price)
         {
             Game game = gameLogic.GetGameById(gameId);
             GameCode gameCode = gameCodeLogic.GetGameCodeByIdGame(gameId);
-            string imageName = game._name + ".jpg";
-            <h1 class="h1-title">You've bought a @game._name</h1>
+            string imageName = game.Name + ".jpg";
+            userLogic.RemoveMoney(currentUser.Id,Price);
+            <h1 class="h1-title">You've bought a @game.Name</h1>
             <div class="container-for-games-on-show-page">
                 <img class="img-big" src="~/img/@imageName">
                 <p class="h1-game">Here's your key</p>
-                <p class="h1-game"> @gameCode._gameCode </p>
+                <p class="h1-game"> @gameCode.Code </p>
             </div>
-            userLogic.RemoveMoney(currentUser._id,Price);
+            
         }
         else
         {
-            Response.Redirect("~/Pages/Nomoney.cshtlm");
+            Response.Redirect("~/Pages/Nomoney.cshtml");
         }
     }
 }

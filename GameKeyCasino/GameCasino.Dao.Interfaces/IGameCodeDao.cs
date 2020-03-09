@@ -7,6 +7,6 @@ namespace GameCasino.Dao.Interfaces
     public interface IGameCodeDao
     {
         GameCode GetGameCodeByIdGame(int idGame);
-        void unable();
+        void Unable();
     }
 }

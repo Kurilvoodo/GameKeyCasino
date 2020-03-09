@@ -8,6 +8,6 @@ namespace GameCasino.BLL.Interfaces
         void AddMoney(int idUser,decimal money);
         void RemoveMoney(int idUser,decimal money);
         bool Authentification(User user);
-        decimal GetUserBillByUsername(string user);
+        User GetUserByUsername(string user);
     }
 }

@@ -91,7 +91,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\modalWindow.js" />
     <Content Include="Styles\Login.css" />
     <Content Include="Styles\Style.css" />
     <Content Include="Web.config" />
@@ -119,6 +118,7 @@
     <Content Include="Pages\PaidKeyPage.cshtml" />
     <Content Include="Pages\Nomoney.cshtml" />
     <Content Include="Pages\Replenish.cshtml" />
+    <Content Include="Pages\AddMoney.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="img\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

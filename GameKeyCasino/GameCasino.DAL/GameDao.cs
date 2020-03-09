@@ -13,9 +13,9 @@ namespace GameCasino.DAL
         public GameCode BuyGameById(Game game, int idUser)
         {
             UserDao userDao = new UserDao();
-            userDao.RemoveMoney(idUser,game._ourPrice); //снимаем деньги со счета покупателя.
+            userDao.RemoveMoney(idUser,game.OurPrice); //снимаем деньги со счета покупателя.
             GameCodeDao gameCodeDao = new GameCodeDao();
-            return gameCodeDao.GetGameCodeByIdGame(game._id);
+            return gameCodeDao.GetGameCodeByIdGame(game.Id);
         }
 
         public IEnumerable<Game> GetAllGames()
@@ -37,7 +37,7 @@ namespace GameCasino.DAL
                         (decimal)reader["OurPrice"], 
                         (decimal)reader["BasePrice"])
                     { 
-                        _id=(int)reader["Id"]
+                        Id=(int)reader["Id"]
                     }
                     );
                 }
@@ -75,7 +75,7 @@ namespace GameCasino.DAL
                         (decimal)reader["OurPrice"],
                         (decimal)reader["BasePrice"])
                     {
-                        _id = (int)reader["Id"]
+                       Id = (int)reader["Id"]
                     };
                 }
                 return game;
@@ -111,7 +111,7 @@ namespace GameCasino.DAL
                         (decimal)reader["OurPrice"],
                         (decimal)reader["BasePrice"])
                     {
-                        _id = (int)reader["Id"]
+                        Id = (int)reader["Id"]
                     });
                 }
                 return games;

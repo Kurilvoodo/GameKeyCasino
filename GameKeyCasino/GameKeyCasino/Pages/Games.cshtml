@@ -17,22 +17,22 @@
         @foreach (Game game in gamelogic.GetAllGames())
         {
             <div class="container-for-games">
-                @{decimal price = game._price; }
-                <h1 class="h1-game">@game._name <strike>@price р.</strike></h1>
-                @{string imageName = game._name + ".jpg";}
+                @{decimal price = game.Price; }
+                <h1 class="h1-game">@game.Name <strike>@price р.</strike></h1>
+                @{string imageName = game.Name + ".jpg";}
                 <img class="img" src="~/img/@imageName">
                 @if (User.Identity.IsAuthenticated)
                 {
                     <form action="~/Pages/GameShow.cshtml" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="Action" value="ShowGame" />
-                        <input type="hidden" name="Id" value="@game._id" />
-                        <button type="submit" class="button-purchase"> Purchase for @game._ourPrice р.</button>
+                        <input type="hidden" name="Id" value="@game.Id" />
+                        <button type="submit" class="button-purchase"> Purchase for @game.OurPrice р.</button>
                     </form>
                 }
                 else
                 {
                     <form action="~/Pages/Login/Authorization.cshtml" method="post" enctype="multipart/form-data">
-                        <button type="submit" class="button-purchase"> Purchase for @game._ourPrice р.</button>
+                        <button type="submit" class="button-purchase"> Purchase for @game.OurPrice р.</button>
                     </form>
                 }
                 <h1 class="h1-title">Or you can try out our Game Roulette!</h1>

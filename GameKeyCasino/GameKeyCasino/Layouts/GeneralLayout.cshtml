@@ -21,13 +21,18 @@
             <a href="~/Pages/Games.cshtml" class="menu-element">Games</a>
             <a href="~/Pages/GameRoulette.cshtml" class="menu-element">Game Roulette</a>
             <a href="~/Pages/About.cshtml" class="menu-element">About us</a>
-            <a href="~/Pages/Login/Authorization.cshtml" class="menu-element">Login</a>
+
             @if (User.Identity.IsAuthenticated)
             {
-                User user = userLogic.GetUserByUsername(User.Identity.Name); 
+                <a href="~/Pages/Replenish.cshtml" class="menu-element"> Add money</a>
+                User user = userLogic.GetUserByUsername(User.Identity.Name);
                 <div class="menu-element">
-                    @User.Identity.Name @user._bill <img src="~/img/lucky_coin.jpg" class="img-coin">
+                    @User.Identity.Name @user.Bill <img src="~/img/lucky_coin.jpg" class="img-coin">
                 </div>
+            }
+            else
+            {
+                <a href="~/Pages/Login/Authorization.cshtml" class="menu-element">Login</a>
             }
 
 

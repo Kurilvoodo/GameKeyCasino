@@ -7,6 +7,6 @@ namespace GameCasino.BLL.Interfaces
     public interface IGameCodeLogic
     {
         GameCode GetGameCodeByIdGame(int idGame);
-        void unable();
+        void Unable();
     }
 }
