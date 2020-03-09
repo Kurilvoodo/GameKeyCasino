@@ -136,17 +136,96 @@ namespace GameKeyCasino.Models
         #region bool IsUserInRole(string username, string roleName)
         public override bool IsUserInRole(string username, string roleName)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.IsUserInRoleWebsite";
+
+                int idUser = _userLogic.GetUserByUsername(username).Id;
+                var idUserParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@IDUser",
+                    Value = idUser,
+                    Direction = ParameterDirection.Input
+                };
+                command.Parameters.Add(idUserParameter);
+
+                int idRole = _userLogic.GetIdRoleByRoleName(roleName);
+                var idRoleParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@IDRole",
+                    Value = idRole,
+                    Direction = ParameterDirection.Input
+                };
+                command.Parameters.Add(idRoleParameter);
+
+                connection.Open();
+
+                return command.ExecuteNonQuery() > 0;
+            }
         }
         #endregion
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
         {
-            throw new NotImplementedException();
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.RemoveUserFromRoleWebsite";
+
+                var idUserParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "IDUser",
+                    Direction = ParameterDirection.Input
+                };
+
+                var idRoleParameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@IDRole",
+                    Direction = ParameterDirection.Input
+                };
+
+                connection.Open();
+                foreach (string username in usernames)
+                {
+                    foreach (string role in roleNames)
+                    {
+                        idUserParameter.Value = _userLogic.GetUserByUsername(username).Id;
+                        idRoleParameter.Value = _userLogic.GetIdRoleByRoleName(role);
+
+                        command.Parameters.AddRange(new SqlParameter[] { idUserParameter, idRoleParameter });
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
         }
 
         public override bool RoleExists(string roleName)
         {
-            throw new NotImplementedException();
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandType = CommandType.StoredProcedure;
+                command.CommandText = "dbo.RoleWebsiteExists";
+
+                var roleNameParameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@RoleName",
+                    Value = roleName,
+                    Direction = ParameterDirection.Input
+                };
+                command.Parameters.Add(roleNameParameter);
+
+                connection.Open();
+                return command.ExecuteNonQuery() > 0;
+            }
         }
         #region NOT_IMPLEMENTED
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
